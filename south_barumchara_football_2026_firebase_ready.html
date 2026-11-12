@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>দক্ষিণ বরুমচড়া ফুটবল উৎসব ২০২৬</title>
+<style>
+:root{--green:#126b43;--dark:#0b5032;--bg:#f2f6f3;--card:#fff;--ink:#17251d;--muted:#66756c;--line:#dce6df;--pale:#e8f4ed;--gold:#e6bd54}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
+header{background:linear-gradient(120deg,var(--dark),#168653);color:#fff;text-align:center;padding:25px 14px 20px}header .cup{font-size:29px}header h1{font-size:clamp(22px,4.5vw,34px);margin:5px 0}header p{margin:0;opacity:.9}
+nav{display:flex;gap:7px;overflow-x:auto;padding:10px max(12px,calc((100% - 1100px)/2));background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+nav button{white-space:nowrap;background:#edf3ef;color:#28543d;padding:9px 13px}nav button.active{background:var(--green);color:#fff}
+main{max-width:1100px;margin:18px auto;padding:0 13px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+button{border:0;border-radius:9px;padding:10px 13px;font-weight:650;cursor:pointer;background:var(--green);color:#fff}button.light{background:#e7efe9;color:#1b5135}button.red{background:#a93232}
+.panel{display:none}.panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px;margin-bottom:14px;box-shadow:0 3px 12px #102b1b08}
+h2{font-size:20px;margin:0 0 12px;color:var(--green)}h3{font-size:16px;margin:15px 0 9px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:13px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{background:var(--pale);border-radius:10px;padding:13px;text-align:center}.stat b{display:block;font-size:23px;color:var(--green)}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:8px 5px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}th{background:#f4f8f5;color:#4a5b50;font-size:12px}td.left{text-align:left;white-space:normal}
+input,select{font:inherit;border:1px solid #cbd8cf;border-radius:7px;padding:7px;min-width:0;width:100%;background:#fff;color:var(--ink)}input[type=number]{text-align:center}
+.teamname{min-width:100px}.score{width:58px}.match{display:grid;grid-template-columns:minmax(65px,1fr) 58px 14px 58px minmax(65px,1fr);gap:6px;align-items:center;margin:9px 0}.match .home{text-align:right}.match .away{text-align:left;font-size:13px}
+.match small{color:var(--muted)}.pill{display:inline-block;background:#e8f4ed;color:#155c39;border-radius:30px;padding:3px 8px;font-size:11px}
+.team-card h3{margin:0 0 10px}.player-grid{display:grid;grid-template-columns:1fr 74px 65px 65px;gap:6px;align-items:center;margin:6px 0}.player-grid.head{font-size:11px;color:var(--muted);text-align:center}
+.player-grid .playername{min-width:0}.muted{color:var(--muted);font-size:12px;line-height:1.55}.highlight{background:#fff8df;border:1px solid #efdfa5;border-radius:10px;padding:11px;margin:12px 0;font-size:13px}
+.stage{border-left:4px solid var(--green);padding-left:12px;margin:12px 0}.stage h3{margin:0 0 8px}.stage-match{background:#f7faf8;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0}
+.stage-match .match{margin:4px 0}.winner{font-weight:750;color:var(--green)}footer{text-align:center;color:var(--muted);font-size:12px;padding:18px}
+@media(max-width:520px){.card{padding:11px}.match{grid-template-columns:minmax(48px,1fr) 47px 10px 47px minmax(48px,1fr);gap:3px}.score{width:47px;padding:6px 3px}.match .away{font-size:11px}.player-grid{grid-template-columns:1fr 58px 48px 48px}.stats{gap:5px}.stat{padding:9px 3px}.stat b{font-size:19px}}
+@media print{nav,.toolbar,button{display:none!important}.panel{display:block!important}.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style></head>
+<body>
+<header><div class="cup">🏆</div><h1>দক্ষিণ বরুমচড়া ফুটবল উৎসব ২০২৬</h1><p>১২ দল • ৪ গ্রুপ • ৫ জন মাঠে + ১ জন অতিরিক্ত</p></header>
+<nav id="nav">
+<button class="active" data-tab="home">ড্যাশবোর্ড</button><button data-tab="groups">গ্রুপ ও পয়েন্ট</button><button data-tab="knockout">নকআউট পর্ব</button><button data-tab="teams">দল ও খেলোয়াড়</button><button data-tab="scorers">গোলদাতা তালিকা</button>
+</nav>
+<main>
+<div class="card" id="cloudPanel">
+  <h2>অনলাইন ডেটাবেস</h2>
+  <p id="cloudStatus" class="muted">Firebase-এর সঙ্গে সংযোগ করা হচ্ছে…</p>
+  <div id="loginArea" style="display:none;max-width:520px">
+    <label class="muted">অ্যাডমিন ইমেইল</label><input id="adminEmail" type="email" autocomplete="username" placeholder="আপনার অ্যাডমিন ইমেইল">
+    <label class="muted">পাসওয়ার্ড</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="আপনার পাসওয়ার্ড">
+    <button id="loginBtn" type="button" style="margin-top:8px">অ্যাডমিন লগইন</button>
+  </div>
+  <button id="logoutBtn" type="button" class="light" style="display:none">লগআউট</button>
+</div>
+<div class="toolbar">
+<button id="saveBtn" onclick="save(true)" disabled>💾 সংরক্ষণ</button><button class="light" onclick="window.print()">🖨️ প্রিন্ট / PDF</button><button class="light" onclick="backup()">⬇️ ব্যাকআপ</button><button class="light" onclick="document.getElementById('restore').click()">⬆️ ব্যাকআপ ফেরত</button><input id="restore" type="file" accept="application/json" hidden onchange="restore(event)"><button class="red" onclick="resetAll()">রিসেট</button>
+</div>
+<section id="home" class="panel active">
+<div class="card"><h2>টুর্নামেন্ট ড্যাশবোর্ড</h2><div class="stats"><div class="stat"><b>১২</b>মোট দল</div><div class="stat"><b>৪</b>গ্রুপ</div><div class="stat"><b>৬</b>প্রতি দলের খেলোয়াড়</div></div>
+<div class="highlight">প্রতি গ্রুপের সেরা ২টি দল কোয়ার্টার ফাইনালে উঠবে। মোট ৮টি দল নকআউট পর্বে খেলবে। মাঠে ৫ জন এবং ১ জন অতিরিক্ত খেলোয়াড় থাকবে।</div>
+<p class="muted">গ্রুপ পর্বের ফলাফল ও খেলোয়াড়ের গোল যোগ করলে সংশ্লিষ্ট তালিকা স্বয়ংক্রিয়ভাবে আপডেট হবে। নকআউট ম্যাচে স্কোর লিখলে বিজয়ী দল পরের রাউন্ডে চলে যাবে। পেনাল্টিতে সিদ্ধান্ত হলে “পেনাল্টি বিজয়ী” নির্বাচন করুন।</p></div>
+<div class="grid" id="homeGroups"></div>
+</section>
+<section id="groups" class="panel"><div class="card"><h2>গ্রুপ পর্ব ও পয়েন্ট তালিকা</h2><p class="muted">প্রতি গ্রুপে ৩টি দল। দলের নাম পরিবর্তন করতে “দল ও খেলোয়াড়” পেজে যান। স্কোর বসালে পয়েন্ট টেবিল আপডেট হবে।</p></div><div class="grid" id="groupTables"></div></section>
+<section id="knockout" class="panel"><div class="card"><h2>নকআউট পর্ব</h2><p class="muted">কোয়ার্টার ফাইনাল: A1 বনাম B2, B1 বনাম A2, C1 বনাম D2, D1 বনাম C2। বিজয়ীরা সেমিফাইনাল ও ফাইনালে যাবে।</p></div><div id="knockoutArea"></div></section>
+<section id="teams" class="panel"><div class="card"><h2>দলের নাম ও খেলোয়াড়ের তথ্য লিখুন</h2><p class="muted">নিচের ঘরগুলোতে সরাসরি ট্যাপ করে নিজের তথ্য লিখুন। প্রতিটি দলের নাম, ৬ জন খেলোয়াড়ের নাম, গোল এবং কার্ডের সংখ্যা সম্পাদনা করা যাবে। প্রথম ৫ জন মূল খেলোয়াড়, ৬ নম্বর অতিরিক্ত/বদলি। পরিবর্তনের পর অন্য পেজে গেলে তথ্য এই ডিভাইসে স্বয়ংক্রিয়ভাবে সংরক্ষিত হবে।</p><div class="highlight">✍️ লেখার নিয়ম: দলের নামের ঘরে ট্যাপ করে দলের নাম লিখুন। এরপর খেলোয়াড়ের নাম ও গোল/কার্ডের ঘরগুলো পূরণ করুন। সবশেষে উপরের “সংরক্ষণ” বাটনে চাপ দিন।</div></div><div class="grid" id="teamCards"></div></section>
+<section id="scorers" class="panel"><div class="card"><h2>সর্বোচ্চ গোলদাতা</h2><p class="muted">দলীয় পেজে খেলোয়াড়ের গোলের সংখ্যা লিখলে এই তালিকা স্বয়ংক্রিয়ভাবে সাজানো হবে।</p><div id="scorerTable"></div></div></section>
+</main><footer>দক্ষিণ বরুমচড়া ফুটবল উৎসব ২০২৬ • টুর্নামেন্ট ম্যানেজার</footer>
+<script>
+const initial=()=>({groups:Array.from({length:4},(_,g)=>({name:String.fromCharCode(65+g),teams:Array.from({length:3},(_,i)=>({name:`দল ${g*3+i+1}`,players:Array.from({length:6},(_,j)=>({name:`খেলোয়াড় ${j+1}`,goals:0,yellow:0,red:0}))})),scores:[[null,null],[null,null],[null,null]]})),ko:{q:[[null,null],[null,null],[null,null],[null,null]],s:[[null,null],[null,null]],f:[null,null],pens:{q:[-1,-1,-1,-1],s:[-1,-1],f:-1}}});
+let data;try{data=JSON.parse(localStorage.getItem('southBarumchara2026'))||initial()}catch(e){data=initial()}
+const pairs=[[0,1],[0,2],[1,2]];
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function save(alertUser=false){localStorage.setItem('southBarumchara2026',JSON.stringify(data));if(window.firebaseSave){window.firebaseSave(alertUser)}else if(alertUser)alert('তথ্য এই ডিভাইসে সংরক্ষণ হয়েছে।')}
+function groupRows(gi){let g=data.groups[gi],r=g.teams.map((t,i)=>({i,name:t.name,pl:0,w:0,d:0,l:0,gf:0,ga:0,pts:0}));
+let played=[];pairs.forEach(([a,b],k)=>{let s=g.scores[k];if(s[0]===null||s[1]===null||s[0]===''||s[1]==='')return;let x=+s[0],y=+s[1];if(!Number.isFinite(x)||!Number.isFinite(y)||x<0||y<0)return;
+r[a].pl++;r[b].pl++;r[a].gf+=x;r[a].ga+=y;r[b].gf+=y;r[b].ga+=x;if(x>y){r[a].w++;r[a].pts+=3;r[b].l++}else if(x<y){r[b].w++;r[b].pts+=3;r[a].l++}else{r[a].d++;r[b].d++;r[a].pts++;r[b].pts++}played.push({a,b,x,y})});
+r.forEach(x=>x.gd=x.gf-x.ga);
+function h2h(a,b){let m=played.find(m=>(m.a===a.i&&m.b===b.i)||(m.a===b.i&&m.b===a.i));if(!m)return 0;let x=m.a===a.i?m.x:m.y,y=m.a===a.i?m.y:m.x;return x>y?-1:x<y?1:0}
+r.sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf||h2h(a,b)||a.i-b.i);return r}
+function teamName(gi,ti){return data.groups[gi].teams[ti].name||`দল ${gi*3+ti+1}`}
+function scoreInputs(stage,idx,arr,home,away){return `<div class="stage-match"><div class="match"><span class="home">${esc(home)}</span><input class="score" type="number" min="0" step="1" placeholder="–" value="${arr[0]??''}" data-ko="${stage},${idx},0"><span>–</span><input class="score" type="number" min="0" step="1" placeholder="–" value="${arr[1]??''}" data-ko="${stage},${idx},1"><span class="away">${esc(away)}</span></div></div>`}
+function koWinner(stage,i){let a=stage==='q'?data.ko.q[i]:stage==='s'?data.ko.s[i]:data.ko.f;if(a[0]===null||a[1]===null||a[0]===''||a[1]===''||+a[0]===+a[1])return null;return +a[0]>+a[1]?0:1}
+function qTeams(){let A=groupRows(0),B=groupRows(1),C=groupRows(2),D=groupRows(3);return [[teamName(0,A[0].i),teamName(1,B[1].i)],[teamName(1,B[0].i),teamName(0,A[1].i)],[teamName(2,C[0].i),teamName(3,D[1].i)],[teamName(3,D[0].i),teamName(2,C[1].i)]]}
+function advance(){let q=qTeams();let qw=data.ko.q.map((_,i)=>{let w=koWinner('q',i);return w===null?null:q[i][w]});return {q,qw,s:[[qw[0],qw[2]],[qw[1],qw[3]]],sw:data.ko.s.map((_,i)=>{let w=koWinner('s',i);return w===null?null:[[qw[0],qw[2]],[qw[1],qw[3]]][i][w]}),f:[null,null]}}
+function bindEvents(){document.querySelectorAll('[data-team]').forEach(el=>el.onchange=e=>{let [g,t]=e.target.dataset.team.split(',').map(Number);data.groups[g].teams[t].name=e.target.value;render();save()});
+document.querySelectorAll('[data-player]').forEach(el=>el.onchange=e=>{let [g,t,p,k]=e.target.dataset.player.split(',').map(Number);data.groups[g].teams[t].players[p][['name','goals','yellow','red'][k]]=k===0?e.target.value:Math.max(0,parseInt(e.target.value)||0);render();save()});
+document.querySelectorAll('[data-gscore]').forEach(el=>el.onchange=e=>{let [g,m,s]=e.target.dataset.gscore.split(',').map(Number);data.groups[g].scores[m][s]=e.target.value===''?null:Math.max(0,parseInt(e.target.value)||0);render();save()});
+document.querySelectorAll('[data-ko]').forEach(el=>el.onchange=e=>{let [st,i,s]=e.target.dataset.ko.split(',');let a=st==='q'?data.ko.q[+i]:st==='s'?data.ko.s[+i]:data.ko.f; a[+s]=e.target.value===''?null:Math.max(0,parseInt(e.target.value)||0);render();save()});
+document.querySelectorAll('[data-pen]').forEach(el=>el.onchange=e=>{let [st,i]=e.target.dataset.pen.split(',');let v=parseInt(e.target.value);if(st==='f')data.ko.pens.f=v;else data.ko.pens[st][+i]=v;render();save()})}
+function tableHTML(gi){let rows=groupRows(gi);return `<div class="card"><h2>গ্রুপ ${data.groups[gi].name}</h2><table><thead><tr><th>অব.</th><th class="left">দল</th><th>ম্যাচ</th><th>জয়</th><th>ড্র</th><th>হার</th><th>গোল</th><th>ব.গো</th><th>পয়েন্ট</th></tr></thead><tbody>${rows.map((r,i)=>`<tr style="${i<2?'background:#e8f4ed':''}"><td>${i+1}</td><td class="left">${esc(r.name)}</td><td>${r.pl}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td>${r.gf}:${r.ga}</td><td>${r.gd}</td><td><b>${r.pts}</b></td></tr>`).join('')}</tbody></table><h3>গ্রুপ ম্যাচের ফলাফল</h3>${pairs.map(([a,b],k)=>`<div class="match"><span class="home">${esc(teamName(gi,a))}</span><input class="score" type="number" min="0" placeholder="–" value="${data.groups[gi].scores[k][0]??''}" data-gscore="${gi},${k},0"><span>–</span><input class="score" type="number" min="0" placeholder="–" value="${data.groups[gi].scores[k][1]??''}" data-gscore="${gi},${k},1"><span class="away">${esc(teamName(gi,b))}</span></div>`).join('')}</div>`}
+function render(){document.getElementById('groupTables').innerHTML=[0,1,2,3].map(tableHTML).join('');document.getElementById('homeGroups').innerHTML=[0,1,2,3].map(gi=>`<div class="card"><h2>গ্রুপ ${data.groups[gi].name}</h2><table><tr><th>অবস্থান</th><th class="left">দল</th><th>পয়েন্ট</th></tr>${groupRows(gi).map((r,i)=>`<tr><td>${i+1}</td><td class="left">${esc(r.name)}</td><td>${r.pts}</td></tr>`).join('')}</table></div>`).join('');
+let adv=advance(),qHTML=adv.q.map((m,i)=>`<h3>কোয়ার্টার ফাইনাল ${i+1}</h3>${scoreInputs('q',i,data.ko.q[i],m[0],m[1])}`).join('');
+let sHTML=adv.s.map((m,i)=>`<h3>সেমিফাইনাল ${i+1}</h3>${scoreInputs('s',i,data.ko.s[i],m[0]||'কোয়ার্টার ফাইনালের বিজয়ী',m[1]||'কোয়ার্টার ফাইনালের বিজয়ী')}`).join('');
+let finalTeams=[adv.sw[0]||'সেমিফাইনাল ১ বিজয়ী',adv.sw[1]||'সেমিফাইনাল ২ বিজয়ী'];let finalWinner=koWinner('f',0);let champion=finalWinner===null?null:finalTeams[finalWinner];
+document.getElementById('knockoutArea').innerHTML=`<div class="card"><div class="stage"><h3>কোয়ার্টার ফাইনাল</h3>${qHTML}</div><div class="stage"><h3>সেমিফাইনাল</h3>${sHTML}</div><div class="stage"><h3>ফাইনাল</h3>${scoreInputs('f',0,data.ko.f,finalTeams[0],finalTeams[1])}<label class="muted">ড্র হলে পেনাল্টি বিজয়ী নির্বাচন করুন</label><select data-pen="f"><option value="-1">পেনাল্টি হয়নি / নির্বাচন করুন</option><option value="0" ${data.ko.pens.f===0?'selected':''}>${esc(finalTeams[0])}</option><option value="1" ${data.ko.pens.f===1?'selected':''}>${esc(finalTeams[1])}</option></select></div>${champion?`<div class="highlight" style="text-align:center"><div>🏆 চ্যাম্পিয়ন</div><b style="font-size:22px">${esc(champion)}</b></div>`:''}</div>`;
+document.getElementById('teamCards').innerHTML=data.groups.map((g,gi)=>g.teams.map((t,ti)=>`<div class="card team-card"><h3>🛡️ ${esc(t.name)} <span class="pill">গ্রুপ ${g.name}</span></h3><label class="muted">এখানে দলের নাম লিখুন</label><input class="teamname" placeholder="দলের নাম লিখুন" value="${esc(t.name)}" data-team="${gi},${ti}"><div class="player-grid head"><span>খেলোয়াড়ের নাম</span><span>গোল</span><span>হলুদ</span><span>লাল</span></div>${t.players.map((p,pi)=>`<div class="player-grid"><input class="playername" placeholder="খেলোয়াড়ের নাম লিখুন" value="${esc(p.name)}" aria-label="খেলোয়াড়ের নাম লিখুন" data-player="${gi},${ti},${pi},0"><input type="number" min="0" value="${p.goals}" title="গোল" data-player="${gi},${ti},${pi},1"><input type="number" min="0" value="${p.yellow}" title="হলুদ কার্ড" data-player="${gi},${ti},${pi},2"><input type="number" min="0" value="${p.red}" title="লাল কার্ড" data-player="${gi},${ti},${pi},3"></div>${pi===4?'<p class="muted">৬ নম্বর খেলোয়াড় অতিরিক্ত / বদলি</p>':''}`).join('')}</div>`).join('')).join('');
+let all=[];data.groups.forEach((g,gi)=>g.teams.forEach(t=>t.players.forEach(p=>{if(p.name&&+p.goals>0)all.push({name:p.name,team:t.name,goals:+p.goals,yellow:+p.yellow,red:+p.red})})));all.sort((a,b)=>b.goals-a.goals);
+document.getElementById('scorerTable').innerHTML=all.length?`<table><tr><th>ক্রম</th><th class="left">খেলোয়াড়</th><th class="left">দল</th><th>গোল</th><th>হলুদ</th><th>লাল</th></tr>${all.map((p,i)=>`<tr><td>${i+1}</td><td class="left">${esc(p.name)}</td><td class="left">${esc(p.team)}</td><td><b>${p.goals}</b></td><td>${p.yellow}</td><td>${p.red}</td></tr>`).join('')}</table>`:'<p class="muted">এখনো কোনো খেলোয়াড়ের গোলের তথ্য দেওয়া হয়নি।</p>';
+bindEvents()}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active')});
+function backup(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='south-barumchara-football-2026-backup.json';a.click();URL.revokeObjectURL(a.href)}
+function restore(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.groups||x.groups.length!==4)throw 0;data=x;render();save(true)}catch(err){alert('সঠিক ব্যাকআপ ফাইল নয়।')}};r.readAsText(f);e.target.value=''}
+function resetAll(){if(confirm('সব দলের নাম, খেলোয়াড় ও ম্যাচের ফলাফল মুছে ফেলবেন?')){data=initial();render();save(true)}}
+render();
+window.getTournamentData=()=>data;
+window.setTournamentData=(value)=>{data=value;render();};
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDEE_jK-MlNuJXxgLopVNini8LK-0VRrK0",
+  authDomain: "south-barumchara-football-2026.firebaseapp.com",
+  projectId: "south-barumchara-football-2026",
+  storageBucket: "south-barumchara-football-2026.firebasestorage.app",
+  messagingSenderId: "949250236013",
+  appId: "1:949250236013:web:2d1cafdf66fcf5baaea964",
+  measurementId: "G-GKCY64VPWT"
+};
+
+// এই UID-টিই Firestore Rules-এ অনুমোদিত অ্যাডমিন UID হিসেবে দেওয়া হয়েছে।
+const ADMIN_UID = "3JuQNTrmutfjoyyJ8YGWKWo3pFV2";
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const tournamentRef = doc(db, "tournament", "main");
+
+let isAdmin = false;
+let remoteApplying = false;
+let remoteHasData = false;
+const statusEl = document.getElementById("cloudStatus");
+const loginArea = document.getElementById("loginArea");
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const saveBtn = document.getElementById("saveBtn");
+function setStatus(message) { statusEl.textContent = message; }
+function lockEditors() {
+  document.querySelectorAll('[data-team], [data-player], [data-gscore], [data-ko], [data-pen]')
+    .forEach(el => { el.disabled = !isAdmin; });
+  saveBtn.disabled = !isAdmin;
+}
+function updateAccess(user) {
+  isAdmin = !!user && user.uid === ADMIN_UID;
+  loginArea.style.display = isAdmin ? "none" : "block";
+  logoutBtn.style.display = user ? "inline-block" : "none";
+  lockEditors();
+  if (isAdmin) setStatus(remoteHasData ? "অ্যাডমিন লগইন সফল। পরিবর্তন অনলাইনে সংরক্ষণ করতে পারবেন।" : "অ্যাডমিন লগইন সফল। আপনার বর্তমান টুর্নামেন্টের তথ্য প্রথমবার অনলাইনে তুলতে ‘সংরক্ষণ’ চাপুন।");
+  else if (user) setStatus("এই অ্যাকাউন্টটি অ্যাডমিন নয়। দর্শক হিসেবে তথ্য দেখা যাবে; সম্পাদনার অনুমতি নেই।");
+  else setStatus("দর্শক মোড: সবাই তথ্য দেখতে পারবেন। পরিবর্তন করতে অ্যাডমিন লগইন করুন।");
+}
+loginBtn.addEventListener("click", async () => {
+  const email = document.getElementById("adminEmail").value.trim();
+  const password = document.getElementById("adminPassword").value;
+  if (!email || !password) { alert("অ্যাডমিন ইমেইল ও পাসওয়ার্ড লিখুন।"); return; }
+  loginBtn.disabled = true;
+  try { await signInWithEmailAndPassword(auth, email, password); }
+  catch (error) { alert("লগইন হয়নি: " + (error.code || error.message)); }
+  finally { loginBtn.disabled = false; }
+});
+logoutBtn.addEventListener("click", async () => { try { await signOut(auth); } catch(e) { alert("লগআউট হয়নি: " + e.message); } });
+
+onSnapshot(tournamentRef, snapshot => {
+  if (snapshot.exists()) {
+    const remoteData = snapshot.data().data;
+    if (remoteData && Array.isArray(remoteData.groups) && !remoteApplying) {
+      remoteApplying = true;
+      window.setTournamentData(remoteData);
+      try { localStorage.setItem("southBarumchara2026", JSON.stringify(remoteData)); } catch(e) {}
+      remoteApplying = false;
+      remoteHasData = true;
+      if (!isAdmin) setStatus("অনলাইন ডেটাবেস থেকে সর্বশেষ তথ্য দেখা যাচ্ছে।");
+    } else if (!remoteData) {
+      remoteHasData = false;
+      if (!isAdmin) setStatus("ডেটাবেস প্রস্তুত। অ্যাডমিন প্রথমবার লগইন করে সংরক্ষণ করলে সবার জন্য তথ্য দেখা যাবে।");
+    }
+  } else {
+    remoteHasData = false;
+    if (!isAdmin) setStatus("ডেটাবেস ডকুমেন্ট পাওয়া যায়নি। Firebase-এ tournament/main ডকুমেন্টটি তৈরি আছে কি না দেখুন।");
+  }
+  lockEditors();
+}, error => setStatus("ডেটাবেস পড়া যাচ্ছে না: " + error.message + " — Firestore Rules পরীক্ষা করুন।"));
+
+onAuthStateChanged(auth, updateAccess);
+window.firebaseSave = async function(alertUser=false) {
+  if (!isAdmin || remoteApplying) {
+    if (alertUser) alert("অনলাইনে পরিবর্তন করতে অ্যাডমিন লগইন প্রয়োজন।");
+    return;
+  }
+  try {
+    await setDoc(tournamentRef, {
+      title: "দক্ষিণ বরুমচড়া ফুটবল উৎসব ২০২৬",
+      data: window.getTournamentData(),
+      updatedAt: new Date().toISOString()
+    }, { merge: true });
+    remoteHasData = true;
+    try { localStorage.setItem("southBarumchara2026", JSON.stringify(window.getTournamentData())); } catch(e) {}
+    setStatus("সর্বশেষ তথ্য Firebase-এ সংরক্ষিত হয়েছে। অন্যরা পেজ খুললে বা আপডেট এলে দেখতে পারবেন।");
+    if (alertUser) alert("তথ্য অনলাইন ডেটাবেসে সংরক্ষণ হয়েছে।");
+  } catch (error) {
+    if (alertUser) alert("অনলাইনে সংরক্ষণ হয়নি: " + error.message + " — Firestore Rules পরীক্ষা করুন।");
+    setStatus("অনলাইনে সংরক্ষণ ব্যর্থ: " + error.message);
+  }
+};
+const observer = new MutationObserver(lockEditors);
+["teamCards", "groupTables", "knockoutArea"].forEach(id => observer.observe(document.getElementById(id), {childList:true,subtree:true}));
+updateAccess(auth.currentUser);
+</script>
+</body></html>
