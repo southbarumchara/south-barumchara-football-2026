@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>দক্ষিণ বরুমচড়া ফুটবল উৎসব ২০২৬</title>
+<style>
+:root{--green:#126b43;--dark:#0b5032;--bg:#f2f6f3;--card:#fff;--ink:#17251d;--muted:#66756c;--line:#dce6df;--pale:#e8f4ed;--gold:#e6bd54}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
+header{background:linear-gradient(120deg,var(--dark),#168653);color:#fff;text-align:center;padding:25px 14px 20px}header .cup{font-size:29px}header h1{font-size:clamp(22px,4.5vw,34px);margin:5px 0}header p{margin:0;opacity:.9}
+nav{display:flex;gap:7px;overflow-x:auto;padding:10px max(12px,calc((100% - 1100px)/2));background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+nav button{white-space:nowrap;background:#edf3ef;color:#28543d;padding:9px 13px}nav button.active{background:var(--green);color:#fff}
+main{max-width:1100px;margin:18px auto;padding:0 13px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+button{border:0;border-radius:9px;padding:10px 13px;font-weight:650;cursor:pointer;background:var(--green);color:#fff}button.light{background:#e7efe9;color:#1b5135}button.red{background:#a93232}
+.panel{display:none}.panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px;margin-bottom:14px;box-shadow:0 3px 12px #102b1b08}
+h2{font-size:20px;margin:0 0 12px;color:var(--green)}h3{font-size:16px;margin:15px 0 9px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:13px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{background:var(--pale);border-radius:10px;padding:13px;text-align:center}.stat b{display:block;font-size:23px;color:var(--green)}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:8px 5px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}th{background:#f4f8f5;color:#4a5b50;font-size:12px}td.left{text-align:left;white-space:normal}
+input,select{font:inherit;border:1px solid #cbd8cf;border-radius:7px;padding:7px;min-width:0;width:100%;background:#fff;color:var(--ink)}input[type=number]{text-align:center}
+.teamname{min-width:100px}.score{width:58px}.match{display:grid;grid-template-columns:minmax(65px,1fr) 58px 14px 58px minmax(65px,1fr);gap:6px;align-items:center;margin:9px 0}.match .home{text-align:right}.match .away{text-align:left;font-size:13px}
+.match small{color:var(--muted)}.pill{display:inline-block;background:#e8f4ed;color:#155c39;border-radius:30px;padding:3px 8px;font-size:11px}
+.team-card h3{margin:0 0 10px}.teamline{display:inline-flex;align-items:center;gap:7px;min-width:0}.team-logo{width:27px;height:27px;object-fit:contain;border-radius:7px;background:#f4f8f5;border:1px solid #52755f;padding:2px;vertical-align:middle;flex:none}.team-logo-placeholder{width:27px;height:27px;display:inline-grid;place-items:center;border-radius:7px;background:#174b30;border:1px solid #2c8050;font-size:17px;flex:none}.logo-tools{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:8px 0 12px}.logo-tools input[type=file]{max-width:220px;font-size:12px}.logo-preview{width:48px;height:48px;object-fit:contain;background:#f4f8f5;border:1px solid #52755f;border-radius:10px;padding:3px}.team-card .teamname{margin-bottom:5px}.player-grid{display:grid;grid-template-columns:1fr 74px 65px 65px;gap:6px;align-items:center;margin:6px 0}.player-grid.head{font-size:11px;color:var(--muted);text-align:center}
+.player-grid .playername{min-width:0}.player-name-wrap{display:flex;align-items:center;gap:7px;min-width:0}.player-photo-label{width:36px;height:36px;flex:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;position:relative}.player-avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #dce6df;background:#e8f4ed;display:block}.player-photo-label input{display:none}.player-photo-placeholder{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#e8f4ed;border:2px solid #dce6df;font-size:17px}.player-name-wrap .playername{flex:1;width:100%;min-width:0}.player-photo-hint{font-size:10px;color:var(--muted);display:block}.muted{color:var(--muted);font-size:12px;line-height:1.55}.highlight{background:#fff8df;border:1px solid #efdfa5;border-radius:10px;padding:11px;margin:12px 0;font-size:13px}
+.stage{border-left:4px solid var(--green);padding-left:12px;margin:12px 0}.stage h3{margin:0 0 8px}.stage-match{background:#f7faf8;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0}
+.stage-match .match{margin:4px 0}.winner{font-weight:750;color:var(--green)}footer{text-align:center;color:var(--muted);font-size:12px;padding:18px}
+@media(max-width:520px){.player-photo-label,.player-avatar,.player-photo-placeholder{width:30px;height:30px}.player-name-wrap{gap:4px}.card{padding:11px}.match{grid-template-columns:minmax(48px,1fr) 47px 10px 47px minmax(48px,1fr);gap:3px}.score{width:47px;padding:6px 3px}.match .away{font-size:11px}.player-grid{grid-template-columns:1fr 58px 48px 48px}.stats{gap:5px}.stat{padding:9px 3px}.stat b{font-size:19px}}
+@media print{nav,.toolbar,button{display:none!important}.panel{display:block!important}.card{break-inside:avoid;box-shadow:none}body{background:white}}
+
+/* PREMIUM FOOTBALL GREEN THEME — visual-only overrides; tournament/Firebase logic unchanged */
+:root{
+ --green:#19a66a;--dark:#071d16;--bg:#07140f;--card:#10251b;--ink:#f1f8f3;--muted:#a5b9ad;
+ --line:#244635;--pale:#153c2a;--gold:#e8c66b;
+ color-scheme:dark;
+}
+html{background:var(--bg)}
+body{background:radial-gradient(ellipse at 50% -15%,#174b31 0%,#0b2117 44%,#06110c 100%);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;min-height:100vh}
+header{position:relative;overflow:hidden;background:linear-gradient(125deg,#06170f 0%,#0d4229 48%,#087849 100%);color:#fff;text-align:center;padding:34px 14px 29px;border-bottom:1px solid #2c8056;box-shadow:0 12px 36px #0008}
+header:before{content:"";position:absolute;inset:0;opacity:.12;background:repeating-linear-gradient(135deg,transparent 0 28px,#b8f5d1 29px 30px,transparent 31px 58px);pointer-events:none}
+header:after{content:"";position:absolute;left:50%;bottom:-70px;transform:translateX(-50%);width:330px;height:140px;border:1px solid #b8f5d155;border-radius:50%;pointer-events:none}
+header>*{position:relative;z-index:1}header .cup{font-size:38px;filter:drop-shadow(0 4px 10px #0008)}header h1{font-size:clamp(23px,5vw,38px);font-weight:850;letter-spacing:.2px;text-shadow:0 3px 12px #0008;margin:8px 0}header p{color:#d4f4df;font-weight:600;letter-spacing:.3px}
+nav{background:#091b12ed;border-bottom:1px solid #28543a;backdrop-filter:blur(12px);box-shadow:0 8px 22px #0005;gap:8px}
+nav button{background:#122c1e;color:#cce5d5;border:1px solid #28543a;border-radius:999px;padding:10px 16px;transition:.18s ease}
+nav button.active{background:linear-gradient(135deg,#20b879,#087345);color:white;border-color:#53d79a;box-shadow:0 4px 16px #0b9a5b55}
+main{max-width:1160px;margin:22px auto;padding:0 14px}
+.card{background:linear-gradient(155deg,#142d20,#0d2017);border:1px solid #2a5039;border-radius:17px;padding:17px;margin-bottom:16px;box-shadow:0 10px 28px #0003,inset 0 1px #ffffff08}
+h2{color:#76e0a8;font-weight:800;letter-spacing:.15px}h3{color:#e5f5eb;font-weight:750}
+button{background:linear-gradient(135deg,#20b879,#087345);color:#fff;border:1px solid #42c98c;border-radius:10px;box-shadow:0 4px 12px #0003;transition:transform .15s ease,filter .15s ease}
+button:active{transform:translateY(1px)}button:disabled{opacity:.45;filter:grayscale(.5);box-shadow:none}button.light{background:#183b29;color:#c8f1d8;border:1px solid #326b49;box-shadow:none}button.red{background:linear-gradient(135deg,#b74444,#812b2b);border-color:#d46a6a}
+.stats .stat{background:linear-gradient(145deg,#19462f,#102b1e);border:1px solid #326847;border-radius:13px;box-shadow:inset 0 1px #ffffff0b}.stat b{color:#83e7b1}
+table{color:#e7f2eb}th{background:#193b29;color:#bde9cd}td,th{border-bottom:1px solid #294a37}
+input,select{background:#0a1b12;color:#f0f8f2;border:1px solid #355b43;border-radius:9px}input:focus,select:focus{outline:2px solid #28b97966;border-color:#42cf8d}
+.match small,.muted{color:#a9c0b2}.pill{background:#174b30;color:#9af0bc;border:1px solid #2c8050}.highlight{background:#3b3219;border:1px solid #8c7131;color:#f8e9b9}.stage{border-left-color:#27bd7b}.stage-match{background:#11291d;border:1px solid #2c513b;border-radius:12px}.winner{color:#8ce9b3}
+footer{color:#9bb3a4}
+@media(max-width:520px){header{padding:27px 12px 23px}nav{padding:9px 10px}nav button{padding:9px 13px;font-size:13px}.card{padding:13px;border-radius:14px}main{margin:14px auto}}
+@media print{body{background:white!important;color:#111!important;color-scheme:light}header{background:#145b37!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.card,.stage-match{background:white!important;color:#111!important;box-shadow:none!important;border-color:#ccc!important}h2,h3,td,th,.muted{color:#111!important}th{background:#eee!important}}
+
+</style></head>
+<body>
+<header><div class="cup">🏆</div><h1>দক্ষিণ বরুমচড়া ফুটবল উৎসব ২০২৬</h1><p>১২ দল • ৪ গ্রুপ • ৫ জন মাঠে + ১ জন অতিরিক্ত</p></header>
+<nav id="nav">
+<button class="active" data-tab="home">ড্যাশবোর্ড</button><button data-tab="groups">গ্রুপ ও পয়েন্ট</button><button data-tab="knockout">নকআউট পর্ব</button><button data-tab="teams">দল ও খেলোয়াড়</button><button data-tab="scorers">গোলদাতা তালিকা</button>
+</nav>
+<main>
+<div class="card" id="cloudPanel">
+  <h2>অনলাইন ডেটাবেস</h2>
+  <p id="cloudStatus" class="muted">Firebase-এর সঙ্গে সংযোগ করা হচ্ছে…</p>
+  <div id="loginArea" style="display:none;max-width:520px">
+    <label class="muted">অ্যাডমিন ইমেইল</label><input id="adminEmail" type="email" autocomplete="username" placeholder="আপনার অ্যাডমিন ইমেইল">
+    <label class="muted">পাসওয়ার্ড</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="আপনার পাসওয়ার্ড">
+    <button id="loginBtn" type="button" style="margin-top:8px">অ্যাডমিন লগইন</button>
+  </div>
+  <button id="logoutBtn" type="button" class="light" style="display:none">লগআউট</button>
+</div>
+<div class="card"><h2>টুর্নামেন্ট ফরম্যাট</h2><p class="muted">অ্যাডমিন চাইলে ১২ দল/৪ গ্রুপ অথবা ৮ দল/২ গ্রুপ বেছে নিতে পারবেন। ৮ দলের ফরম্যাটে প্রতি গ্রুপের সেরা ২ দল সরাসরি সেমিফাইনালে যাবে; কোনো কোয়ার্টার ফাইনাল থাকবে না। ফরম্যাট বদলালে আগের ফরম্যাটের তথ্য আলাদা করে সংরক্ষিত থাকবে।</p><select id="formatSelect"><option value="12x4">১২ দল • ৪ গ্রুপ</option><option value="8x2">৮ দল • ২ গ্রুপ • সেরা ২ দল সরাসরি সেমিফাইনাল</option></select></div>
+<div class="toolbar">
+<button id="saveBtn" onclick="save(true)" disabled>💾 সংরক্ষণ</button><button class="light" onclick="window.print()">🖨️ প্রিন্ট / PDF</button><button class="light" onclick="backup()">⬇️ ব্যাকআপ</button><button class="light" onclick="document.getElementById('restore').click()">⬆️ ব্যাকআপ ফেরত</button><input id="restore" type="file" accept="application/json" hidden onchange="restore(event)"><button class="red" onclick="resetAll()">রিসেট</button>
+</div>
+<section id="home" class="panel active">
+<div class="card"><h2>টুর্নামেন্ট ড্যাশবোর্ড</h2><div class="stats" id="homeStats"></div>
+<div class="highlight" id="homeRule"></div>
+<p class="muted">গ্রুপ পর্বের ফলাফল ও খেলোয়াড়ের গোল যোগ করলে সংশ্লিষ্ট তালিকা স্বয়ংক্রিয়ভাবে আপডেট হবে। নকআউট ম্যাচে স্কোর লিখলে বিজয়ী দল পরের রাউন্ডে চলে যাবে। পেনাল্টিতে সিদ্ধান্ত হলে “পেনাল্টি বিজয়ী” নির্বাচন করুন।</p></div>
+<div class="grid" id="homeGroups"></div>
+</section>
+<section id="groups" class="panel"><div class="card"><h2>গ্রুপ পর্ব ও পয়েন্ট তালিকা</h2><p class="muted" id="groupsIntro"></p></div><div class="grid" id="groupTables"></div></section>
+<section id="knockout" class="panel"><div class="card"><h2>নকআউট পর্ব</h2><p class="muted" id="knockoutIntro"></p></div><div id="knockoutArea"></div></section>
+<section id="teams" class="panel"><div class="card"><h2>দলের নাম ও খেলোয়াড়ের তথ্য লিখুন</h2><p class="muted">নিচের ঘরগুলোতে সরাসরি ট্যাপ করে নিজের তথ্য লিখুন। প্রতিটি দলের নাম, ৬ জন খেলোয়াড়ের নাম, গোল এবং কার্ডের সংখ্যা সম্পাদনা করা যাবে। প্রথম ৫ জন মূল খেলোয়াড়, ৬ নম্বর অতিরিক্ত/বদলি। পরিবর্তনের পর অন্য পেজে গেলে তথ্য এই ডিভাইসে স্বয়ংক্রিয়ভাবে সংরক্ষিত হবে।</p><div class="highlight">✍️ লেখার নিয়ম: দলের নামের ঘরে ট্যাপ করে দলের নাম লিখুন। এরপর খেলোয়াড়ের নাম ও গোল/কার্ডের ঘরগুলো পূরণ করুন। সবশেষে উপরের “সংরক্ষণ” বাটনে চাপ দিন।</div></div><div class="grid" id="teamCards"></div></section>
+<section id="scorers" class="panel"><div class="card"><h2>সর্বোচ্চ গোলদাতা</h2><p class="muted">দলীয় পেজে খেলোয়াড়ের গোলের সংখ্যা লিখলে এই তালিকা স্বয়ংক্রিয়ভাবে সাজানো হবে।</p><div id="scorerTable"></div></div></section>
+</main><footer>দক্ষিণ বরুমচড়া ফুটবল উৎসব ২০২৬ • টুর্নামেন্ট ম্যানেজার</footer>
+<script>
+function pairings(n){let out=[];for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)out.push([a,b]);return out}
+function makeKO(format){let qCount=format==='12x4'?4:0;return {q:Array.from({length:qCount},()=>[null,null]),s:[[null,null],[null,null]],f:[null,null],pens:{q:Array(qCount).fill(-1),s:[-1,-1],f:-1}}}
+function createFormatData(format='12x4'){let groupCount=format==='12x4'?4:2,teamCount=format==='12x4'?3:4;return {format,groups:Array.from({length:groupCount},(_,g)=>({name:String.fromCharCode(65+g),teams:Array.from({length:teamCount},(_,i)=>({name:`দল ${g*teamCount+i+1}`,players:Array.from({length:6},(_,j)=>({name:`খেলোয়াড় ${j+1}`,goals:0,yellow:0,red:0}))})),scores:Array.from({length:pairings(teamCount).length},()=>[null,null]),penalties:Array.from({length:pairings(teamCount).length},()=>-1)})),ko:makeKO(format),savedFormats:{}}}
+function normalizeData(value){if(!value||!Array.isArray(value.groups))return createFormatData();let format=value.format||(value.groups.length===2?'8x2':'12x4');if(!['8x2','12x4'].includes(format))format=value.groups.length===2?'8x2':'12x4';let base=createFormatData(format);base.groups=value.groups;base.ko=value.ko||base.ko;base.savedFormats=value.savedFormats||{};base.groups.forEach(g=>{g.scores=Array.from({length:pairings(g.teams.length).length},(_,i)=>g.scores?.[i]||[null,null]);g.penalties=Array.from({length:pairings(g.teams.length).length},(_,i)=>g.penalties?.[i]??-1);g.teams.forEach(t=>{t.logo=t.logo||'';t.players=Array.from({length:6},(_,i)=>{let p=t.players?.[i]||({name:`খেলোয়াড় ${i+1}`,goals:0,yellow:0,red:0});p.photo=p.photo||'';return p})})});base.ko.q=Array.from({length:format==='12x4'?4:0},(_,i)=>base.ko.q?.[i]||[null,null]);base.ko.s=Array.from({length:2},(_,i)=>base.ko.s?.[i]||[null,null]);base.ko.f=base.ko.f||[null,null];base.ko.pens=base.ko.pens||{q:[],s:[-1,-1],f:-1};base.ko.pens.q=Array.from({length:base.ko.q.length},(_,i)=>base.ko.pens.q?.[i]??-1);base.ko.pens.s=Array.from({length:2},(_,i)=>base.ko.pens.s?.[i]??-1);base.ko.pens.f=base.ko.pens.f??-1;return base}
+let data;try{data=normalizeData(JSON.parse(localStorage.getItem('southBarumchara2026'))||createFormatData())}catch(e){data=createFormatData()}
+function pairsFor(gi){return pairings(data.groups[gi].teams.length)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function save(alertUser=false){localStorage.setItem('southBarumchara2026',JSON.stringify(data));if(window.firebaseSave){window.firebaseSave(alertUser)}else if(alertUser)alert('তথ্য এই ডিভাইসে সংরক্ষণ হয়েছে।')}
+function groupRows(gi){let g=data.groups[gi],r=g.teams.map((t,i)=>({i,name:t.name,pl:0,w:0,pw:0,d:0,l:0,gf:0,ga:0,pts:0}));let played=[];pairsFor(gi).forEach(([a,b],k)=>{let s=g.scores[k];if(s[0]===null||s[1]===null||s[0]===''||s[1]==='')return;let x=+s[0],y=+s[1];if(!Number.isFinite(x)||!Number.isFinite(y)||x<0||y<0)return;let winner=x>y?0:x<y?1:g.penalties[k];if(x===y&&winner!==0&&winner!==1)return;r[a].pl++;r[b].pl++;r[a].gf+=x;r[a].ga+=y;r[b].gf+=y;r[b].ga+=x;if(winner===0){r[a].w++;r[a].pts+=3;r[b].l++}else{r[b].w++;r[b].pts+=3;r[a].l++}if(x===y){r[winner===0?a:b].pw++}played.push({a,b,x,y,winner})});r.forEach(x=>x.gd=x.gf-x.ga);function h2h(a,b){let m=played.find(m=>(m.a===a.i&&m.b===b.i)||(m.a===b.i&&m.b===a.i));if(!m)return 0;let w=m.a===a.i?m.winner:1-m.winner;return w===0?-1:1}r.sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf||h2h(a,b)||a.i-b.i);return r}
+function teamName(gi,ti){return data.groups[gi]?.teams[ti]?.name||`দল ${gi+1}-${ti+1}`}
+function teamMark(t){return t?.logo?`<img class="team-logo" src="${t.logo}" alt="দলের লোগো">`:'<span class="team-logo-placeholder">⚽</span>'}
+function teamDisplay(gi,ti){let t=data.groups[gi]?.teams[ti];return `<span class="teamline">${teamMark(t)}${esc(t?.name||teamName(gi,ti))}</span>`}
+function teamDisplayByName(name){for(let g of data.groups){let t=g.teams.find(x=>x.name===name);if(t)return `<span class="teamline">${teamMark(t)}${esc(name)}</span>`}return esc(name)}
+function scoreInputs(stage,idx,arr,home,away){return `<div class="stage-match"><div class="match"><span class="home">${teamDisplayByName(home)}</span><input class="score" type="number" min="0" step="1" placeholder="–" value="${arr[0]??''}" data-ko="${stage},${idx},0"><span>–</span><input class="score" type="number" min="0" step="1" placeholder="–" value="${arr[1]??''}" data-ko="${stage},${idx},1"><span class="away">${teamDisplayByName(away)}</span></div><label class="muted">ড্র হলে পেনাল্টি বিজয়ী</label><select data-pen="${stage},${idx}"><option value="-1">নির্বাচন করুন</option><option value="0" ${data.ko.pens[stage][idx]===0?'selected':''}>${esc(home)}</option><option value="1" ${data.ko.pens[stage][idx]===1?'selected':''}>${esc(away)}</option></select></div>`}
+function koWinner(stage,i){let a=stage==='q'?data.ko.q[i]:stage==='s'?data.ko.s[i]:data.ko.f;if(a[0]===null||a[1]===null||a[0]===''||a[1]==='')return null;if(+a[0]===+a[1]){let p=stage==='f'?data.ko.pens.f:data.ko.pens[stage][i];return p===0||p===1?p:null}return +a[0]>+a[1]?0:1}
+function qualifiers(){let rows=data.groups.map((g,i)=>groupRows(i));if(data.format==='12x4')return {q:[[teamName(0,rows[0][0].i),teamName(1,rows[1][1].i)],[teamName(1,rows[1][0].i),teamName(0,rows[0][1].i)],[teamName(2,rows[2][0].i),teamName(3,rows[3][1].i)],[teamName(3,rows[3][0].i),teamName(2,rows[2][1].i)]]};return {q:[],s:[[teamName(0,rows[0][0].i),teamName(1,rows[1][1].i)],[teamName(1,rows[1][0].i),teamName(0,rows[0][1].i)]]}}
+function advance(){let qual=qualifiers(),q=qual.q,qw=data.ko.q.map((_,i)=>{let w=koWinner('q',i);return w===null?null:q[i][w]});let semiTeams=data.format==='12x4'?[[qw[0]||'কোয়ার্টার ফাইনালের বিজয়ী',qw[2]||'কোয়ার্টার ফাইনালের বিজয়ী'],[qw[1]||'কোয়ার্টার ফাইনালের বিজয়ী',qw[3]||'কোয়ার্টার ফাইনালের বিজয়ী']]:qual.s;let sw=data.ko.s.map((_,i)=>{let w=koWinner('s',i);return w===null?null:semiTeams[i][w]});return {q,qw,s:semiTeams,sw}}
+function bindEvents(){document.querySelectorAll('[data-player-photo]').forEach(el=>el.onchange=async e=>{let [g,t,p]=e.target.dataset.playerPhoto.split(',').map(Number),file=e.target.files?.[0];if(!file)return;if(!file.type.startsWith('image/')){alert('শুধু ছবির ফাইল নির্বাচন করুন।');e.target.value='';return}if(file.size>5*1024*1024){alert('ছবির আকার ৫ MB-এর কম হতে হবে।');e.target.value='';return}let oldPhoto=data.groups[g].teams[t].players[p].photo||'';try{let img=new Image(),url=URL.createObjectURL(file);img.onload=()=>{let side=72,c=document.createElement('canvas');c.width=side;c.height=side;let ctx=c.getContext('2d'),scale=Math.max(side/img.width,side/img.height),w=img.width*scale,h=img.height*scale;ctx.drawImage(img,(side-w)/2,(side-h)/2,w,h);let compact=c.toDataURL('image/webp',.42);URL.revokeObjectURL(url);if(compact.length>9000){alert('ছবিটি ছোট করা গেলেও ফাইলটি বড়। অন্য ছবি ব্যবহার করুন।');e.target.value='';return}data.groups[g].teams[t].players[p].photo=compact;if(JSON.stringify(data).length>700000){data.groups[g].teams[t].players[p].photo=oldPhoto;alert('সব ছবি ও তথ্যের মোট আকার বেশি হয়ে যাচ্ছে। আরও ছোট ছবি ব্যবহার করুন।');e.target.value='';return}render();save();alert('খেলোয়াড়ের ছবি সংরক্ষিত হয়েছে।')};img.onerror=()=>{URL.revokeObjectURL(url);alert('ছবিটি খোলা যায়নি। অন্য ছবি দিন।')};img.src=url}catch(err){alert('ছবি যোগ করা যায়নি। আবার চেষ্টা করুন।')}e.target.value=''});document.querySelectorAll('[data-logo]').forEach(el=>el.onchange=async e=>{let [g,t]=e.target.dataset.logo.split(',').map(Number),file=e.target.files?.[0];if(!file)return;if(!file.type.startsWith('image/')){alert('শুধু ছবি নির্বাচন করুন।');e.target.value='';return}if(file.size>5*1024*1024){alert('ছবির আকার ৫ MB-এর কম হতে হবে।');e.target.value='';return}try{let img=new Image(),url=URL.createObjectURL(file);img.onload=()=>{let c=document.createElement('canvas'),side=128;c.width=side;c.height=side;let ctx=c.getContext('2d');ctx.clearRect(0,0,side,side);let scale=Math.min(side/img.width,side/img.height),w=img.width*scale,h=img.height*scale;ctx.drawImage(img,(side-w)/2,(side-h)/2,w,h);let compact=c.toDataURL('image/webp',.62);URL.revokeObjectURL(url);if(compact.length>32000){alert('এই লোগোটি ছোট করা গেলেও ফাইলটি বড়। অন্য ছোট ছবি ব্যবহার করুন।');e.target.value='';return}data.groups[g].teams[t].logo=compact;let total=JSON.stringify(data).length;if(total>650000){data.groups[g].teams[t].logo='';alert('সব লোগোসহ ডেটা অনেক বড় হয়ে যাচ্ছে। আরও ছোট ছবি ব্যবহার করুন।');e.target.value='';return}render();save();alert('দলের লোগো সংরক্ষিত হয়েছে।')};img.onerror=()=>{URL.revokeObjectURL(url);alert('ছবিটি খোলা যায়নি। অন্য ছবি দিন।')};img.src=url}catch(err){alert('লোগো যোগ করা যায়নি। আবার চেষ্টা করুন।')}e.target.value=''});document.querySelectorAll('[data-team]').forEach(el=>el.onchange=e=>{let [g,t]=e.target.dataset.team.split(',').map(Number);data.groups[g].teams[t].name=e.target.value;render();save()});document.querySelectorAll('[data-player]').forEach(el=>el.onchange=e=>{let [g,t,p,k]=e.target.dataset.player.split(',').map(Number);data.groups[g].teams[t].players[p][['name','goals','yellow','red'][k]]=k===0?e.target.value:Math.max(0,parseInt(e.target.value)||0);render();save()});document.querySelectorAll('[data-gscore]').forEach(el=>el.onchange=e=>{let [g,m,s]=e.target.dataset.gscore.split(',').map(Number);data.groups[g].scores[m][s]=e.target.value===''?null:Math.max(0,parseInt(e.target.value)||0);render();save()});document.querySelectorAll('[data-gpen]').forEach(el=>el.onchange=e=>{let [g,m]=e.target.dataset.gpen.split(',').map(Number);data.groups[g].penalties[m]=parseInt(e.target.value);render();save()});document.querySelectorAll('[data-ko]').forEach(el=>el.onchange=e=>{let [st,i,s]=e.target.dataset.ko.split(',');let a=st==='q'?data.ko.q[+i]:st==='s'?data.ko.s[+i]:data.ko.f;a[+s]=e.target.value===''?null:Math.max(0,parseInt(e.target.value)||0);render();save()});document.querySelectorAll('[data-pen]').forEach(el=>el.onchange=e=>{let [st,i]=e.target.dataset.pen.split(',');let v=parseInt(e.target.value);if(st==='f')data.ko.pens.f=v;else data.ko.pens[st][+i]=v;render();save()})}
+function tableHTML(gi){let rows=groupRows(gi),ps=pairsFor(gi);return `<div class="card"><h2>গ্রুপ ${data.groups[gi].name}</h2><table><thead><tr><th>অব.</th><th class="left">দল</th><th>ম্যাচ</th><th>জয়</th><th>পেনাল্টি জয়</th><th>হার</th><th>গোল</th><th>ব.গো</th><th>পয়েন্ট</th></tr></thead><tbody>${rows.map((r,i)=>`<tr style="${i<2?'background:#e8f4ed':''}"><td>${i+1}</td><td class="left"><span class="teamline">${teamMark(data.groups[gi].teams[r.i])}${esc(r.name)}</span></td><td>${r.pl}</td><td>${r.w}</td><td>${r.pw}</td><td>${r.l}</td><td>${r.gf}:${r.ga}</td><td>${r.gd}</td><td><b>${r.pts}</b></td></tr>`).join('')}</tbody></table><h3>গ্রুপ ম্যাচের ফলাফল</h3>${ps.map(([a,b],k)=>`<div class="match"><span class="home">${teamDisplay(gi,a)}</span><input class="score" type="number" min="0" placeholder="–" value="${data.groups[gi].scores[k][0]??''}" data-gscore="${gi},${k},0"><span>–</span><input class="score" type="number" min="0" placeholder="–" value="${data.groups[gi].scores[k][1]??''}" data-gscore="${gi},${k},1"><span class="away">${teamDisplay(gi,b)}</span>${data.groups[gi].scores[k][0]!==null&&data.groups[gi].scores[k][1]!==null&&+data.groups[gi].scores[k][0]===+data.groups[gi].scores[k][1]?`<div class="penalty-box"><label class="muted">সমান গোল — পেনাল্টি শুটআউটের বিজয়ী</label><select data-gpen="${gi},${k}"><option value="-1">পেনাল্টি বিজয়ী নির্বাচন করুন</option><option value="0" ${data.groups[gi].penalties[k]===0?'selected':''}>${esc(data.groups[gi].teams[a].name)}</option><option value="1" ${data.groups[gi].penalties[k]===1?'selected':''}>${esc(data.groups[gi].teams[b].name)}</option></select></div>`:''}</div>`).join('')}</div>`}
+function render(){let is12=data.format==='12x4',groupCount=data.groups.length,teamCount=data.groups[0].teams.length;document.getElementById('formatSelect').value=data.format;document.getElementById('formatSelect').disabled=!window.isAdminForUI;document.querySelector('header p').textContent=`${is12?'১২ দল • ৪ গ্রুপ':'৮ দল • ২ গ্রুপ'} • ৫ জন মাঠে + ১ জন অতিরিক্ত`;document.getElementById('homeStats').innerHTML=`<div class="stat"><b>${groupCount*teamCount}</b>মোট দল</div><div class="stat"><b>${groupCount}</b>গ্রুপ</div><div class="stat"><b>৬</b>প্রতি দলের খেলোয়াড়</div>`;document.getElementById('homeRule').textContent=is12?'প্রতি গ্রুপের সেরা ২টি দল কোয়ার্টার ফাইনালে উঠবে। মোট ৮টি দল নকআউট পর্বে খেলবে।':'প্রতি গ্রুপের সেরা ২টি দল সেমিফাইনালে উঠবে। মোট ৪টি দল নকআউট পর্বে খেলবে।';document.getElementById('groupsIntro').textContent=`প্রতি গ্রুপে ${teamCount}টি দল। দলের নাম পরিবর্তন করতে “দল ও খেলোয়াড়” পেজে যান। স্কোর বসালে পয়েন্ট টেবিল আপডেট হবে। সমান গোল হলে পেনাল্টি শুটআউটের বিজয়ী নির্বাচন করতে হবে; গ্রুপে ড্র থাকবে না।`;document.getElementById('groupTables').innerHTML=data.groups.map((g,i)=>tableHTML(i)).join('');document.getElementById('homeGroups').innerHTML=data.groups.map((g,gi)=>`<div class="card"><h2>গ্রুপ ${g.name}</h2><table><tr><th>অবস্থান</th><th class="left">দল</th><th>পয়েন্ট</th></tr>${groupRows(gi).map((r,i)=>`<tr><td>${i+1}</td><td class="left"><span class="teamline">${teamMark(data.groups[gi].teams[r.i])}${esc(r.name)}</span></td><td>${r.pts}</td></tr>`).join('')}</table></div>`).join('');let adv=advance(),qHTML=adv.q.map((m,i)=>`<h3>কোয়ার্টার ফাইনাল ${i+1}</h3>${scoreInputs('q',i,data.ko.q[i],m[0],m[1])}`).join(''),sHTML=adv.s.map((m,i)=>`<h3>সেমিফাইনাল ${i+1}</h3>${scoreInputs('s',i,data.ko.s[i],m[0],m[1])}`).join('');let finalTeams=[adv.sw[0]||'সেমিফাইনাল ১ বিজয়ী',adv.sw[1]||'সেমিফাইনাল ২ বিজয়ী'],finalWinner=koWinner('f',0),champion=finalWinner===null?null:finalTeams[finalWinner];document.getElementById('knockoutIntro').textContent=is12?'কোয়ার্টার ফাইনাল: A1 বনাম B2, B1 বনাম A2, C1 বনাম D2, D1 বনাম C2।':'সরাসরি সেমিফাইনাল: A1 বনাম B2 এবং B1 বনাম A2। দুই সেমিফাইনালের বিজয়ী ফাইনালে খেলবে; কোয়ার্টার ফাইনাল নেই।';document.getElementById('knockoutArea').innerHTML=`<div class="card">${is12?`<div class="stage"><h3>কোয়ার্টার ফাইনাল</h3>${qHTML}</div>`:''}<div class="stage"><h3>সেমিফাইনাল</h3>${sHTML}</div><div class="stage"><h3>ফাইনাল</h3>${scoreInputs('f',0,data.ko.f,finalTeams[0],finalTeams[1])}</div>${champion?`<div class="highlight" style="text-align:center"><div>🏆 চ্যাম্পিয়ন</div><b style="font-size:22px">${esc(champion)}</b></div>`:''}</div>`;document.getElementById('teamCards').innerHTML=data.groups.map((g,gi)=>g.teams.map((t,ti)=>`<div class="card team-card"><h3><span class="teamline">${teamMark(t)}${esc(t.name)}</span> <span class="pill">গ্রুপ ${g.name}</span></h3><div class="logo-tools"><img class="logo-preview" src="${t.logo||'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='}" alt="লোগো প্রিভিউ" onerror="this.style.display='none'"><div><label class="muted">দলের লোগো / পতাকা আপলোড (ঐচ্ছিক)</label><input type="file" accept="image/*" data-logo="${gi},${ti}">${t.logo?`<button class="light" type="button" onclick="removeLogo(${gi},${ti})">লোগো মুছুন</button>`:''}</div></div><label class="muted">এখানে দলের নাম লিখুন</label><input class="teamname" placeholder="দলের নাম লিখুন" value="${esc(t.name)}" data-team="${gi},${ti}"><div class="player-grid head"><span>খেলোয়াড়ের নাম</span><span>গোল</span><span>হলুদ</span><span>লাল</span></div>${t.players.map((p,pi)=>`<div class="player-grid"><div class="player-name-wrap"><label class="player-photo-label" title="ছবি আপলোড / পরিবর্তন"><img class="player-avatar" src="${p.photo||'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 72 72%22%3E%3Crect width=%2272%22 height=%2272%22 rx=%2236%22 fill=%22%23e8f4ed%22/%3E%3Ctext x=%2236%22 y=%2248%22 text-anchor=%22middle%22 font-size=%2238%22%3E%F0%9F%91%A4%3C/text%3E%3C/svg%3E'}" alt="খেলোয়াড়ের ছবি"><input type="file" accept="image/*" data-player-photo="${gi},${ti},${pi}"></label><input class="playername" placeholder="খেলোয়াড়ের নাম লিখুন" value="${esc(p.name)}" aria-label="খেলোয়াড়ের নাম লিখুন" data-player="${gi},${ti},${pi},0"></div><input type="number" min="0" value="${p.goals}" title="গোল" data-player="${gi},${ti},${pi},1"><input type="number" min="0" value="${p.yellow}" title="হলুদ কার্ড" data-player="${gi},${ti},${pi},2"><input type="number" min="0" value="${p.red}" title="লাল কার্ড" data-player="${gi},${ti},${pi},3"></div>${pi===4?'<p class="muted">৬ নম্বর খেলোয়াড় অতিরিক্ত / বদলি</p>':''}`).join('')}</div>`).join('')).join('');let all=[];data.groups.forEach(g=>g.teams.forEach(t=>t.players.forEach(p=>{if(p.name&&+p.goals>0)all.push({name:p.name,photo:p.photo||'',team:t.name,goals:+p.goals,yellow:+p.yellow,red:+p.red})})));all.sort((a,b)=>b.goals-a.goals);document.getElementById('scorerTable').innerHTML=all.length?`<table><tr><th>ক্রম</th><th class="left">খেলোয়াড়</th><th class="left">দল</th><th>গোল</th><th>হলুদ</th><th>লাল</th></tr>${all.map((p,i)=>`<tr><td>${i+1}</td><td class="left"><span class="teamline">${p.photo?`<img class="player-avatar" src="${p.photo}" alt="">`:`<span class="player-photo-placeholder">👤</span>`}${esc(p.name)}</span></td><td class="left">${teamDisplayByName(p.team)}</td><td><b>${p.goals}</b></td><td>${p.yellow}</td><td>${p.red}</td></tr>`).join('')}</table>`:'<p class="muted">এখনো কোনো খেলোয়াড়ের গোলের তথ্য দেওয়া হয়নি।</p>';bindEvents();if(window.refreshEditorLocks)window.refreshEditorLocks()}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active')});
+function changeFormat(next){if(next===data.format)return;if(!confirm('ফরম্যাট বদলালে বর্তমান ফরম্যাটের তথ্য আলাদা করে সংরক্ষণ হবে। নতুন ফরম্যাটের জন্য নতুন দল ও ম্যাচের ফলাফল তৈরি হবে। চালিয়ে যাবেন?')){document.getElementById('formatSelect').value=data.format;return}let saved=data.savedFormats||{};saved[data.format]={groups:data.groups,ko:data.ko};let restored=saved[next];data=createFormatData(next);data.savedFormats=saved;if(restored){data.groups=restored.groups;data.ko=restored.ko}render();save(true)}
+document.getElementById('formatSelect').addEventListener('change',e=>changeFormat(e.target.value));
+function removeLogo(g,t){if(confirm('এই দলের লোগো মুছে ফেলবেন?')){data.groups[g].teams[t].logo='';render();save()}}
+function backup(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='south-barumchara-football-2026-backup.json';a.click();URL.revokeObjectURL(a.href)}
+function restore(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=normalizeData(JSON.parse(r.result));data=x;render();save(true)}catch(err){alert('সঠিক ব্যাকআপ ফাইল নয়।')}};r.readAsText(f);e.target.value=''}
+function resetAll(){if(confirm('সব দলের নাম, খেলোয়াড় ও ম্যাচের ফলাফল মুছে ফেলবেন?')){data=createFormatData(data.format);render();save(true)}}
+render();
+window.getTournamentData=()=>data;
+window.setTournamentData=(value)=>{data=normalizeData(value);render();};
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDEE_jK-MlNuJXxgLopVNini8LK-0VRrK0",
+  authDomain: "south-barumchara-football-2026.firebaseapp.com",
+  projectId: "south-barumchara-football-2026",
+  storageBucket: "south-barumchara-football-2026.firebasestorage.app",
+  messagingSenderId: "949250236013",
+  appId: "1:949250236013:web:2d1cafdf66fcf5baaea964",
+  measurementId: "G-GKCY64VPWT"
+};
+
+// এই UID-টিই Firestore Rules-এ অনুমোদিত অ্যাডমিন UID হিসেবে দেওয়া হয়েছে।
+const ADMIN_UID = "3JuQNTrmutfjoyyJ8YGWKWo3pFV2";
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const tournamentRef = doc(db, "tournament", "main");
+
+let isAdmin = false;
+let remoteApplying = false;
+let remoteHasData = false;
+const statusEl = document.getElementById("cloudStatus");
+const loginArea = document.getElementById("loginArea");
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const saveBtn = document.getElementById("saveBtn");
+function setStatus(message) { statusEl.textContent = message; }
+function lockEditors() {
+  window.isAdminForUI = isAdmin;
+  document.getElementById("formatSelect").disabled = !isAdmin;
+  document.querySelectorAll('[data-team], [data-player], [data-player-photo], [data-gscore], [data-ko], [data-pen], [data-logo]')
+    .forEach(el => { el.disabled = !isAdmin; });
+  saveBtn.disabled = !isAdmin;
+}
+window.refreshEditorLocks = lockEditors;
+function updateAccess(user) {
+  isAdmin = !!user && user.uid === ADMIN_UID;
+  loginArea.style.display = isAdmin ? "none" : "block";
+  logoutBtn.style.display = user ? "inline-block" : "none";
+  lockEditors();
+  if (isAdmin) setStatus(remoteHasData ? "অ্যাডমিন লগইন সফল। পরিবর্তন অনলাইনে সংরক্ষণ করতে পারবেন।" : "অ্যাডমিন লগইন সফল। আপনার বর্তমান টুর্নামেন্টের তথ্য প্রথমবার অনলাইনে তুলতে ‘সংরক্ষণ’ চাপুন।");
+  else if (user) setStatus("এই অ্যাকাউন্টটি অ্যাডমিন নয়। দর্শক হিসেবে তথ্য দেখা যাবে; সম্পাদনার অনুমতি নেই।");
+  else setStatus("দর্শক মোড: সবাই তথ্য দেখতে পারবেন। পরিবর্তন করতে অ্যাডমিন লগইন করুন।");
+}
+loginBtn.addEventListener("click", async () => {
+  const email = document.getElementById("adminEmail").value.trim();
+  const password = document.getElementById("adminPassword").value;
+  if (!email || !password) { alert("অ্যাডমিন ইমেইল ও পাসওয়ার্ড লিখুন।"); return; }
+  loginBtn.disabled = true;
+  try { await signInWithEmailAndPassword(auth, email, password); }
+  catch (error) { alert("লগইন হয়নি: " + (error.code || error.message)); }
+  finally { loginBtn.disabled = false; }
+});
+logoutBtn.addEventListener("click", async () => { try { await signOut(auth); } catch(e) { alert("লগআউট হয়নি: " + e.message); } });
+
+// Firestore does not allow an array to directly contain another array.
+// Preserve the app's existing array-based data model by wrapping only arrays
+// that contain child arrays as ordinary objects before upload, then restoring
+// them when reading from Firestore.
+function encodeFirestoreSafe(value) {
+  if (Array.isArray(value)) {
+    const encoded = value.map(encodeFirestoreSafe);
+    if (value.some(item => Array.isArray(item))) {
+      const entries = {};
+      encoded.forEach((item, index) => { entries[String(index)] = item; });
+      return { sbFirestoreArrayEncoded: true, length: encoded.length, entries };
+    }
+    return encoded;
+  }
+  if (value && typeof value === "object") {
+    const out = {};
+    Object.entries(value).forEach(([key, item]) => { out[key] = encodeFirestoreSafe(item); });
+    return out;
+  }
+  return value;
+}
+function decodeFirestoreSafe(value) {
+  if (Array.isArray(value)) return value.map(decodeFirestoreSafe);
+  if (value && typeof value === "object") {
+    if (value.sbFirestoreArrayEncoded === true && value.entries && typeof value.entries === "object") {
+      return Array.from({ length: Number(value.length) || 0 }, (_, index) => decodeFirestoreSafe(value.entries[String(index)]));
+    }
+    const out = {};
+    Object.entries(value).forEach(([key, item]) => { out[key] = decodeFirestoreSafe(item); });
+    return out;
+  }
+  return value;
+}
+
+onSnapshot(tournamentRef, snapshot => {
+  if (snapshot.exists()) {
+    const remoteData = decodeFirestoreSafe(snapshot.data().data);
+    if (remoteData && Array.isArray(remoteData.groups) && !remoteApplying) {
+      remoteApplying = true;
+      window.setTournamentData(remoteData);
+      try { localStorage.setItem("southBarumchara2026", JSON.stringify(remoteData)); } catch(e) {}
+      remoteApplying = false;
+      remoteHasData = true;
+      if (!isAdmin) setStatus("অনলাইন ডেটাবেস থেকে সর্বশেষ তথ্য দেখা যাচ্ছে।");
+    } else if (!remoteData) {
+      remoteHasData = false;
+      if (!isAdmin) setStatus("ডেটাবেস প্রস্তুত। অ্যাডমিন প্রথমবার লগইন করে সংরক্ষণ করলে সবার জন্য তথ্য দেখা যাবে।");
+    }
+  } else {
+    remoteHasData = false;
+    if (!isAdmin) setStatus("ডেটাবেস ডকুমেন্ট পাওয়া যায়নি। Firebase-এ tournament/main ডকুমেন্টটি তৈরি আছে কি না দেখুন।");
+  }
+  lockEditors();
+}, error => setStatus("ডেটাবেস পড়া যাচ্ছে না: " + error.message + " — Firestore Rules পরীক্ষা করুন।"));
+
+onAuthStateChanged(auth, updateAccess);
+window.firebaseSave = async function(alertUser=false) {
+  if (!isAdmin || remoteApplying) {
+    if (alertUser) alert("অনলাইনে পরিবর্তন করতে অ্যাডমিন লগইন প্রয়োজন।");
+    return;
+  }
+  try {
+    await setDoc(tournamentRef, {
+      title: "দক্ষিণ বরুমচড়া ফুটবল উৎসব ২০২৬",
+      data: encodeFirestoreSafe(window.getTournamentData()),
+      updatedAt: new Date().toISOString()
+    }, { merge: true });
+    remoteHasData = true;
+    try { localStorage.setItem("southBarumchara2026", JSON.stringify(window.getTournamentData())); } catch(e) {}
+    setStatus("সর্বশেষ তথ্য Firebase-এ সংরক্ষিত হয়েছে। অন্যরা পেজ খুললে বা আপডেট এলে দেখতে পারবেন।");
+    if (alertUser) alert("তথ্য অনলাইন ডেটাবেসে সংরক্ষণ হয়েছে।");
+  } catch (error) {
+    if (alertUser) alert("অনলাইনে সংরক্ষণ হয়নি: " + error.message + " — Firestore Rules পরীক্ষা করুন।");
+    setStatus("অনলাইনে সংরক্ষণ ব্যর্থ: " + error.message);
+  }
+};
+const observer = new MutationObserver(lockEditors);
+["teamCards", "groupTables", "knockoutArea"].forEach(id => observer.observe(document.getElementById(id), {childList:true,subtree:true}));
+updateAccess(auth.currentUser);
+</script>
+</body></html>
